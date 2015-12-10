@@ -195,21 +195,10 @@ void crtaj(){
   if(loptica.udar(stap, 1000)) loptica.obrniY();
   for (int i = 0; i<100; i++){
     cigla[i].crtaj();
-    proba = loptica.udar(cigla[i], i);
-    if (proba) loptica.obrniY();
-
+    if (!proba) proba = loptica.udar(cigla[i], i);
   }
-  cout << proba << '\n';
-  glBegin(GL_QUADS);
-  glColor3f(1,1,1);
-  glVertex3f(stap.getX(), stap.getY(), 0);
-  glColor3f(1,1,1);
-  glVertex3f(stap.getX() + stap.getW(), stap.getY(), 0);
-  glColor3f(1,1,1);
-  glVertex3f(stap.getX()+stap.getW(), stap.getY()-stap.getH(), 0);
-  glColor3f(1,1,1);
-  glVertex3f(stap.getX(), stap.getY()-stap.getH(), 0);
-  glEnd();
+  if (proba) loptica.obrniY();
+  proba = false;
   glPopMatrix();
   glutSwapBuffers();
 }
